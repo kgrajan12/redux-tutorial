@@ -6,7 +6,8 @@
 > Redux-persist is a well structured and useful library for use on react projects using everyone's favorite state management tool. Persisting state across sessions perceives as simple but is actually dreadfully complicated.
 ### 3) How to use it?
  - See the video to understand well about how to use it.
- - [click here](https://youtu.be/Aug5ZV3dCVM) - to see the video
+ - [click here](http://morebatet.com/4ZTa) - to see the video
+ [![Alt text](https://img.youtube.com/vi/Aug5ZV3dCVM/0.jpg)](https://www.youtube.com/watch?v=Aug5ZV3dCVM)
  
 ### Required Dependencies
 ```sh
