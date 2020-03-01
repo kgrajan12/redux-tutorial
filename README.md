@@ -7,7 +7,8 @@
 ### 3) How to use it?
  - See the video to understand well about how to use it.
  - [click here](http://morebatet.com/4ZTa) - to see the video
- [![Alt text](https://img.youtube.com/vi/Aug5ZV3dCVM/0.jpg)](https://www.youtube.com/watch?v=Aug5ZV3dCVM)
+
+[![video](https://img.youtube.com/vi/Aug5ZV3dCVM/0.jpg)](https://www.youtube.com/watch?v=Aug5ZV3dCVM)
  
 ### Required Dependencies
 ```sh
