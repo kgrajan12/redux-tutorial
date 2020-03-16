@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import Main from './src/screens/main';
 import {Provider} from 'react-redux';
 import stores from './src/redux/store';
 import {PersistGate} from 'redux-persist/integration/react';
+import TabNav from './src/navigations/tabNav';
 
 const {store, persistor} = stores();
 
@@ -16,7 +16,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <Main />
+            <TabNav />
         </PersistGate>
       </Provider>
     );

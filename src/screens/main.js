@@ -1,8 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {Component} from 'react';
-import {View, Text, TextInput, ScrollView} from 'react-native';
-import {connect} from 'react-redux';
-import {ADD, SUBTRACT, UPDATE, ADD_TODO} from '../redux/action';
+import React, { Component } from 'react';
+import { View, Text, TextInput, ScrollView } from 'react-native';
+import { connect } from 'react-redux';
+import { ADD, SUBTRACT, UPDATE, ADD_TODO, COMPLETE } from '../redux/action';
+import _ from 'lodash/array';
 
 class Main extends Component {
   constructor(props) {
@@ -46,11 +47,13 @@ class Main extends Component {
   //   }
 
   render() {
-    const {state, props} = this;
-    const {payload} = state;
-    const {toDo, addToDo} = props;
+    const { state, props } = this;
+    const { payload } = state;
+    const { toDo, addToDo, complete } = props;
+    const notCompleted = toDo.map((val, key) => !val.completed ? { ...val, key } : undefined);
+    const compact = _.compact(notCompleted);
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <View
           style={{
             flexDirection: 'row',
@@ -59,37 +62,21 @@ class Main extends Component {
           }}>
           <TextInput
             placeholder="Please text here..."
-            style={{flex: 1}}
-            onChangeText={payload => this.setState({payload})}
+            style={{ flex: 1 }}
+            onChangeText={payload => this.setState({ payload })}
             value={payload}
           />
-          <Text // now we add some style
-            onPress={() => {
-              addToDo(payload);
-              this.setState({payload: ''});
-            }}
-            style={{
-              color: '#fff',
-              backgroundColor: '#aaa',
-              paddingHorizontal: 20,
-              padding: 15,
-              textAlignVertical: 'center',
-            }}>
+          <Text onPress={() => {
+              addToDo({ text: payload, completed: false });
+              this.setState({ payload: '' });
+            }} style={{ color: '#fff', backgroundColor: '#aaa', paddingHorizontal: 20, padding: 15, textAlignVertical: 'center' }}>
             ADD
           </Text>
         </View>
         <ScrollView>
-          {toDo.map((val, key) => (
-            <Text
-              style={{
-                padding: 10,
-                backgroundColor: '#aaa',
-                color: '#fff',
-                borderRadius: 5,
-                margin: 5,
-              }}
-              key={key}>
-              {val}
+          {compact.map((val, key) => (
+            <Text onPress={() => complete(val.key)} style={{ padding: 10, backgroundColor: '#aaa', color: '#fff', borderRadius: 5, margin: 5 }} key={key}>
+              {val.text}
             </Text>
           ))}
         </ScrollView>
@@ -98,16 +85,17 @@ class Main extends Component {
   }
 }
 
-const matchStateToProps = ({counter, textInput, toDo}) => ({
+const matchStateToProps = ({ counter, textInput, toDo }) => ({
   counter,
   textInput,
   toDo,
 });
 const matchDispatchToProps = dispatch => ({
-  add: () => dispatch({type: ADD}),
-  subtract: () => dispatch({type: SUBTRACT}),
-  update: payload => dispatch({type: UPDATE, payload}),
-  addToDo: payload => dispatch({type: ADD_TODO, payload}),
+  add: () => dispatch({ type: ADD }),
+  subtract: () => dispatch({ type: SUBTRACT }),
+  update: payload => dispatch({ type: UPDATE, payload }),
+  addToDo: payload => dispatch({ type: ADD_TODO, payload }),
+  complete: payload => dispatch({ type: COMPLETE, payload })
 });
 
 export default connect(

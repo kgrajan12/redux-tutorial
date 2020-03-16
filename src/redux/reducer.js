@@ -1,4 +1,4 @@
-import {ADD, SUBTRACT, UPDATE, ADD_TODO} from './action';
+import {ADD, SUBTRACT, UPDATE, ADD_TODO, COMPLETE, UNDO} from './action';
 
 // Initial states
 const initialCounter = 0;
@@ -27,6 +27,8 @@ export const toDo = (state = initTodo, action) => {
   switch (action.type) {
     case ADD_TODO:
       return [...state, action.payload];
+      case COMPLETE: return state.map((val, key) => key == action.payload ? { ...val, completed: true } : val);
+      case UNDO: return state.map((val, key) => key == action.payload ? { ...val, completed: false } : val);
     default:
       return state;
   }
