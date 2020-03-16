@@ -17,6 +17,11 @@ npm install react-redux --save
 npm install @react-native-community/async-storage --save
 npm install redux-persist
 ```
+### 4) How to make To-Do List in React-Native? | Redux
+ - See the video to understand well about how to use it.
+ - [click here](http://hinafinea.com/CQB) - to see the video
+
+[![video](https://img.youtube.com/vi/a096hPPhf9Y/0.jpg)](https://www.youtube.com/watch?v=a096hPPhf9Y)
  
 # Next monday we can see about built the TO-DO Application with Redux-persist!
 ___
